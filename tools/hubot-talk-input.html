@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8">
+    <title>hubot-talk-input</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <style>
+     article{
+       margin: 20px;
+     }
+    </style>
+    </head>
+<body>
+    <header>
+        <h1 id="input-text" class="text-center h2">hubot-talk-input</h1>
+    </header>
+    <article>
+        <div id="buttons" class="text-center">
+          <button id="recBtn" class="btn btn-default btn-lg fa fa-microphone"> マイク 開始</button>
+         </div>
+    </article>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+    <script>
+  $(document).ready(function() {
+    var rec;
+    var nowRec = false;
+    var rec = new webkitSpeechRecognition();
+      rec.continuous = true;
+      rec.interimResults = false;
+      rec.lang = "ja-JP";
+
+      rec.onresult = function(e) {
+        for (var i = e.resultIndex; i < e.results.length; ++i) {
+            if (e.results[i].isFinal) {
+              var msg = e.results[i][0].transcript;
+              msg = msg.replace(/^\s+/g, "");
+              $("#input-text").text(msg);
+              $.get("http://localhost:8080/control", {text:msg});
+            };
+        };
+      };
+
+    $("#recBtn").click(function() {
+      if(nowRec){
+        rec.stop();
+        $(this).attr("class", "btn btn-default btn-lg fa fa-microphone");
+        $(this).text(msg);(" マイク 開始");
+        nowRec = false;
+      }else{
+        rec.start();
+        $(this).attr("class", "btn btn-danger btn-lg fa fa-microphone");
+        $(this).text(" マイク 停止");
+        nowRec = true;
+      }
+    });
+});
+
+    </script>
+</body>
+</html>

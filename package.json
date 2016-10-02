@@ -1,0 +1,25 @@
+{
+  "name": "hubot-talk-interface",
+  "version": "1.0.0",
+  "description": "Talk interface for hubot by speech recognition and speech synthesis.",
+  "main": "index.coffee",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Drunkar/hubot-talk-interface"
+  },
+  "keywords": [
+    "hubot"
+  ],
+  "author": "Drunkar",
+  "license": "MIT",
+  "dependencies": {
+    "node-aplay": "^1.0.3",
+    "voicetext": "0.0.6"
+  },
+  "devDependencies": {
+  },
+  "bugs": {
+    "url": "https://github.com/Drunkar/hubot-talk-interface/issues"
+  },
+  "homepage": "https://github.com/Drunkar/hubot-talk-interface"
+}
