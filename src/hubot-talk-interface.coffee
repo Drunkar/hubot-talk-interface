@@ -50,4 +50,5 @@ module.exports = (robot) ->
     res.send text
 
   robot.router.get "/input/", (req, res) ->
-    res.sendFile("hubot-talk-input.html");
+    fs.readFile("hubot-talk-input.html", "utf8",  (err, html) ->
+      res.send html
