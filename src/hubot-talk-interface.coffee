@@ -18,6 +18,7 @@
 VoiceText = require "voicetext"
 Sound = require "node-aplay"
 fs = require "fs"
+path = require "path"
 
 module.exports = (robot) ->
   voice = new VoiceText process.env.HUBOT_TALK_INTERFACE_API_KEY
@@ -50,5 +51,5 @@ module.exports = (robot) ->
     res.send text
 
   robot.router.get "/input/", (req, res) ->
-    fs.readFile "hubot-talk-input.html", "utf8",  (err, html) ->
+    fs.readFile path.join(__dirname, "hubot-talk-input.html"), (err, html) ->
       res.send html
