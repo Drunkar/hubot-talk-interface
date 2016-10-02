@@ -48,3 +48,6 @@ module.exports = (robot) ->
       new Sound "talk.wav" .play
 
     res.send text
+
+  robot.router.get "/input/", (req, res) ->
+    res.sendFile("hubot-talk-input.html");
