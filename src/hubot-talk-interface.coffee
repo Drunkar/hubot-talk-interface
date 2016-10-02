@@ -51,5 +51,4 @@ module.exports = (robot) ->
     res.send text
 
   robot.router.get "/input/", (req, res) ->
-    fs.readFile path.join(__dirname, "hubot-talk-input.html"), (err, html) ->
-      res.send html
+    res.sendFile path.join(__dirname, "hubot-talk-input.html")
