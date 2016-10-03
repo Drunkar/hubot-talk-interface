@@ -39,7 +39,7 @@
               var msg = e.results[i][0].transcript;
               msg = msg.replace(/^\s+/g, "");
               $("#input-text").text(msg);
-              $.get("http://localhost:8080/control", {text:msg});
+              $.get("http://localhost:3000/control", {text:msg});
             };
         };
       };
