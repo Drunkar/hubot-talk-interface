@@ -23,7 +23,7 @@ path = require "path"
 module.exports = (robot) ->
   voice = new VoiceText process.env.HUBOT_TALK_INTERFACE_API_KEY
 
-  robot.router.get "/control/", (req, res) ->
+  robot.router.get "/control", (req, res) ->
     text = if req.query.text then req.query.text else ""
 
     if text == "よつぎちゃん"
@@ -50,7 +50,7 @@ module.exports = (robot) ->
 
     res.send text
 
-  robot.router.get "/input/", (req, res) ->
+  robot.router.get "/input", (req, res) ->
     fs.readFile path.join(__dirname, "hubot-talk-input.html"), (err, html) ->
       res.type "html"
       res.send html
