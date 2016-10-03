@@ -16,7 +16,7 @@
 #
 
 VoiceText = require "voicetext"
-exec = require "child_process" .exec
+exec = require("child_process").exec
 fs = require "fs"
 path = require "path"
 
@@ -47,6 +47,7 @@ module.exports = (robot) ->
       return fs.writeFile "./talk.wav", buf, "binary", (e) ->
         if e
           return console.error e
+      # play mono audio
       exec "aplay -D plughw:" + aplay_hw + " talk.wav"
 
     res.send text
