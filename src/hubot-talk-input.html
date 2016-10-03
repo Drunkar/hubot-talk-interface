@@ -25,39 +25,50 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
     <script>
-  $(document).ready(function() {
-    var rec;
-    var nowRec = false;
-    var rec = new webkitSpeechRecognition();
-      rec.continuous = true;
-      rec.interimResults = false;
-      rec.lang = "ja-JP";
-
-      rec.onresult = function(e) {
-        for (var i = e.resultIndex; i < e.results.length; ++i) {
-            if (e.results[i].isFinal) {
-              var msg = e.results[i][0].transcript;
-              msg = msg.replace(/^\s+/g, "");
-              $("#input-text").text(msg);
-              $.get("http://localhost:3000/control", {text:msg});
-            };
-        };
-      };
-
-    $("#recBtn").click(function() {
-      if(nowRec){
-        rec.stop();
-        $(this).attr("class", "btn btn-default btn-lg fa fa-microphone");
-        $(this).text(" マイク 開始");
-        nowRec = false;
-      }else{
-        rec.start();
-        $(this).attr("class", "btn btn-danger btn-lg fa fa-microphone");
-        $(this).text(" マイク 停止");
-        nowRec = true;
+      function sleep(time, callback) {
+        setTimeout(callback, time);
       }
-    });
-});
+
+      $(document).ready(function() {
+        var rec;
+        var nowRec = false;
+        var rec = new webkitSpeechRecognition();
+          rec.continuous = true;
+          rec.interimResults = false;
+          rec.lang = "ja-JP";
+
+          rec.onresult = function(e) {
+            for (var i = e.resultIndex; i < e.results.length; ++i) {
+                if (e.results[i].isFinal) {
+                  var msg = e.results[i][0].transcript;
+                  msg = msg.replace(/^\s+/g, "");
+                  $("#input-text").text(msg);
+                  $.get("http://localhost:3000/control", {text:msg});
+                };
+            };
+            rec.stop();
+            setTimeout(function (){ rec.start()}, 1000);
+          };
+
+          rec.onnomatch = function(){
+            rec.stop();
+            setTimeout(function (){ rec.start()}, 1000);
+          };
+
+        $("#recBtn").click(function() {
+          if(nowRec){
+            rec.stop();
+            $(this).attr("class", "btn btn-default btn-lg fa fa-microphone");
+            $(this).text(" マイク 開始");
+            nowRec = false;
+          }else{
+            rec.start();
+            $(this).attr("class", "btn btn-danger btn-lg fa fa-microphone");
+            $(this).text(" マイク 停止");
+            nowRec = true;
+          }
+        });
+      });
 
     </script>
 </body>
