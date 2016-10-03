@@ -29,10 +29,10 @@ module.exports = (robot) ->
     if text == "よつぎちゃん"
       text = "なんや"
 
-    speaker       = if req.query.speaker then req.query.speaker else voice.SPEAKER.HARUKA
-    emotion       = if req.query.emotion then req.query.emotion else voice.EMOTION.HAPPINESS
-    emotion_level = if req.query.emotion_level then req.query.emotion_level else voice.EMOTION_LEVEL.LOW
-    pitch         = if req.query.pitch then req.query.pitch else 100
+    speaker       = if req.query.speaker then req.query.speaker else voice.SPEAKER.HIKARI
+    emotion       = if req.query.emotion then req.query.emotion else voice.EMOTION.SADNESS
+    emotion_level = if req.query.emotion_level then req.query.emotion_level else 4
+    pitch         = if req.query.pitch then req.query.pitch else 98
     speed         = if req.query.speed then req.query.speed else 100
     volume        = if req.query.volume then req.query.volume else 100
     aplay_hw      = if process.env.HUBOT_TALK_INTERFACE_HARDWARE then process.env.HUBOT_TALK_INTERFACE_HARDWARE else "0"
