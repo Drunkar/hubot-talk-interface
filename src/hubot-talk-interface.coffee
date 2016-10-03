@@ -47,8 +47,8 @@ module.exports = (robot) ->
       return fs.writeFile "./talk.wav", buf, "binary", (e) ->
         if e
           return console.error e
-      # play mono audio
-      exec "aplay -D plughw:" + aplay_hw + " talk.wav"
+        # play mono audio
+        exec "aplay -D plughw:" + aplay_hw + " ./talk.wav"
 
     res.send text
 
