@@ -13,9 +13,7 @@
   "author": "Drunkar",
   "license": "MIT",
   "dependencies": {
-    "node-aplay": "^1.0.3",
     "voicetext": "0.0.6",
-    "fs": "~0.0.1",
     "path": "~0.12.7"
   },
   "devDependencies": {

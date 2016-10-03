@@ -16,7 +16,7 @@
 #
 
 VoiceText = require "voicetext"
-Sound = require "node-aplay"
+exec = require "child_process" .exec
 fs = require "fs"
 path = require "path"
 
@@ -35,6 +35,7 @@ module.exports = (robot) ->
     pitch         = if req.query.pitch then req.query.pitch else 100
     speed         = if req.query.speed then req.query.speed else 100
     volume        = if req.query.volume then req.query.volume else 100
+    aplay_hw      = if process.env.HUBOT_TALK_INTERFACE_HARDWARE then process.env.HUBOT_TALK_INTERFACE_HARDWARE else "0"
 
     voice.speaker speaker
     voice.emotion emotion
@@ -46,7 +47,7 @@ module.exports = (robot) ->
       return fs.writeFile "./talk.wav", buf, "binary", (e) ->
         if e
           return console.error e
-      new Sound "talk.wav" .play
+      exec "aplay -D plughw:" + aplay_hw + " talk.wav"
 
     res.send text
 
