@@ -13,7 +13,7 @@
   "author": "Drunkar",
   "license": "MIT",
   "dependencies": {
-    "voicetext": "git://github.com/pchw/node-voicetext.git#a00999279c4cd76f632ed3ee37eff66d1a602d5c",
+    "voicetext": "git://github.com/pchw/node-voicetext.git#f80fb79db18b27a659b4ee30288e0913ee634dd6",
     "path": "~0.12.7"
   },
   "devDependencies": {
