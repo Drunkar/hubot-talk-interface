@@ -50,10 +50,20 @@
             setTimeout(function (){ rec.start()}, 1000);
           };
 
-          rec.onnomatch = function(){
+          rec.onnomatch = function() {
             rec.stop();
             setTimeout(function (){ rec.start()}, 1000);
           };
+
+          rec.onerror = function(event) {
+            rec.stop();
+            setTimeout(function (){ rec.start()}, 1000);
+          }
+
+          rec.onend = function() {
+            rec.stop();
+            setTimeout(function (){ rec.start()}, 1000);
+          }
 
         $("#recBtn").click(function() {
           if(nowRec){
