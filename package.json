@@ -14,7 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "voicetext": "git://github.com/Drunkar/node-voicetext.git",
-    "path": "~0.12.7"
+    "path": "~0.12.7",
+    "hubot-btoir": "git://github.com/Drunkar/hubot-btoir.git"
   },
   "devDependencies": {
   },
