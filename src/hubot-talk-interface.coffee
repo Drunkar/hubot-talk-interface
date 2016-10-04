@@ -21,12 +21,12 @@ fs = require "fs"
 path = require "path"
 btoir = require "hubot-btoir"
 
+config =
+  roomId: process.env.HUBOT_TALK_INTERFACE_ROOM_ID
+
 module.exports = (robot) ->
   unless config.roomId?
-      robot.logger.error 'process.env.HUBOT_AISATSU_ROOM_ID is not defined'
-      return
-    unless config.people?
-      robot.logger.error 'process.env.HUBOT_AISATSU_PEOPLE is not defined'
+      robot.logger.error "process.env.HUBOT_TALK_INTERFACE_ROOM_ID is not defined"
       return
 
   voice = new VoiceText process.env.HUBOT_TALK_INTERFACE_API_KEY
