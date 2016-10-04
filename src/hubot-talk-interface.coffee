@@ -19,7 +19,8 @@ VoiceText = require "voicetext"
 exec = require("child_process").exec
 fs = require "fs"
 path = require "path"
-btoir = require "hubot-btoir"
+CODE_PREFIX = require "hubot-btoir".CODE_PREFIX
+codes = require "hubot-btoir/src/ir_codes.json"
 
 config =
   roomId: process.env.HUBOT_TALK_INTERFACE_ROOM_ID
@@ -61,9 +62,9 @@ module.exports = (robot) ->
     res.send text
 
     if text == "電気消して"
-      code = btoir.codes.light_off
+      code = codes.light_off
       message = ""
-      child_process.exec btoir.CODE_PREFIX + code, (err, stdout, stderr) ->
+      child_process.exec CODE_PREFIX + code, (err, stdout, stderr) ->
         if err
           message = "Error: Something was wrong!"
         else
