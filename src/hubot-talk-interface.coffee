@@ -64,7 +64,7 @@ module.exports = (robot) ->
     if text == "電気消して"
       code = codes.light_off
       message = ""
-      child_process.exec CODE_PREFIX + code, (err, stdout, stderr) ->
+      exec CODE_PREFIX + code, (err, stdout, stderr) ->
         if err
           message = "Error: Something was wrong!"
         else
