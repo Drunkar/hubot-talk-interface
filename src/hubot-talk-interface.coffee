@@ -19,8 +19,16 @@ VoiceText = require "voicetext"
 exec = require("child_process").exec
 fs = require "fs"
 path = require "path"
+btoir = require "hubot-btoir"
 
 module.exports = (robot) ->
+  unless config.roomId?
+      robot.logger.error 'process.env.HUBOT_AISATSU_ROOM_ID is not defined'
+      return
+    unless config.people?
+      robot.logger.error 'process.env.HUBOT_AISATSU_PEOPLE is not defined'
+      return
+
   voice = new VoiceText process.env.HUBOT_TALK_INTERFACE_API_KEY
 
   robot.router.get "/control", (req, res) ->
@@ -51,6 +59,17 @@ module.exports = (robot) ->
         exec "aplay -D plughw:" + aplay_hw + " ./talk.wav"
 
     res.send text
+
+    if text == "電気消して"
+      code = btoir.codes.light_off
+      message = ""
+      child_process.exec btoir.CODE_PREFIX + code, (err, stdout, stderr) ->
+        if err
+          message = "Error: Something was wrong!"
+        else
+          message = "Turn off the light."
+        envelope = room: config.roomId
+        robot.send envelope, message
 
   robot.router.get "/input", (req, res) ->
     fs.readFile path.join(__dirname, "hubot-talk-input.html"), (err, html) ->
