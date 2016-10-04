@@ -19,7 +19,7 @@ VoiceText = require "voicetext"
 exec = require("child_process").exec
 fs = require "fs"
 path = require "path"
-CODE_PREFIX = require "hubot-btoir".CODE_PREFIX
+CODE_PREFIX = process.env.HUBOT_BTOIR_CODE_PREFIX
 codes = require "hubot-btoir/src/ir_codes.json"
 
 config =
