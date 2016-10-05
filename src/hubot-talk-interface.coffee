@@ -61,7 +61,29 @@ module.exports = (robot) ->
 
     res.send text
 
-    if text == "電気消して"
+    if text == "エアコンとめて" or text == "エアコン消して"
+      code = codes.aircon_off
+      message = ""
+      exec CODE_PREFIX + code, (err, stdout, stderr) ->
+        if err
+          message = "Error: Something was wrong!"
+        else
+          message = "Stop air-conditioning."
+        envelope = room: config.roomId
+        robot.send envelope, message
+
+    else if text == "エアコンつけて"
+      code = codes.aircon_on
+      message = ""
+      exec CODE_PREFIX + code, (err, stdout, stderr) ->
+        if err
+          message = "Error: Something was wrong!"
+        else
+          message = "Start air-conditioning."
+        envelope = room: config.roomId
+        robot.send envelope, message
+
+    else if text == "電気消して"
       code = codes.light_off
       message = ""
       exec CODE_PREFIX + code, (err, stdout, stderr) ->
@@ -71,6 +93,40 @@ module.exports = (robot) ->
           message = "Turn off the light."
         envelope = room: config.roomId
         robot.send envelope, message
+
+    else if text == "電気つけて"
+      code = codes.light_on
+      message = ""
+      exec CODE_PREFIX + code, (err, stdout, stderr) ->
+        if err
+          message = "Error: Something was wrong!"
+        else
+          message = "Turn on the light."
+        envelope = room: config.roomId
+        robot.send envelope, message
+
+    else if text == "電気暗め"
+      code = codes.light_night
+      message = ""
+      exec CODE_PREFIX + code, (err, stdout, stderr) ->
+        if err
+          message = "Error: Something was wrong!"
+        else
+          message = "Turn the light to night mode."
+        envelope = room: config.roomId
+        robot.send envelope, message
+
+    else if text == "テレビつけて" or text == "テレビ消して"
+      code = codes.tv_power
+      message = ""
+      exec CODE_PREFIX + code, (err, stdout, stderr) ->
+        if err
+          message = "Error: Something was wrong!"
+        else
+          message = "Power tv."
+        envelope = room: config.roomId
+        robot.send envelope, message
+
 
   robot.router.get "/input", (req, res) ->
     fs.readFile path.join(__dirname, "hubot-talk-input.html"), (err, html) ->
