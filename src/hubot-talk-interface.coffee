@@ -61,7 +61,7 @@ module.exports = (robot) ->
 
     res.send text
 
-    if text == "エアコンとめて" or text == "エアコン消して"
+    if text == "エアコンとめて" or text == "エアコン止めて" or text == "エアコン消して"
       code = codes.aircon_off
       message = ""
       exec CODE_PREFIX + code, (err, stdout, stderr) ->
