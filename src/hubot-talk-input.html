@@ -47,22 +47,22 @@
                 };
             };
             rec.stop();
-            setTimeout(function (){ rec.start()}, 1000);
+            setTimeout(function (){ rec.start()}, 100);
           };
 
           rec.onnomatch = function() {
             rec.stop();
-            setTimeout(function (){ rec.start()}, 1000);
+            setTimeout(function (){ rec.start()}, 100);
           };
 
           rec.onerror = function(event) {
             rec.stop();
-            setTimeout(function (){ rec.start()}, 1000);
+            setTimeout(function (){ rec.start()}, 100);
           }
 
           rec.onend = function() {
             rec.stop();
-            setTimeout(function (){ rec.start()}, 1000);
+            setTimeout(function (){ rec.start()}, 100);
           }
 
         $("#recBtn").click(function() {
