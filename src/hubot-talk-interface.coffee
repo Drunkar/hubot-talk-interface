@@ -83,7 +83,7 @@ module.exports = (robot) ->
         envelope = room: config.roomId
         robot.send envelope, message
 
-    else if text == "電気消して" or text == "おやすみ" or text == "おやすみなさい" or text == "いってきます"
+    else if text == "電気消して" or text == "おやすみ" or text == "おやすみなさい" or text == "行ってきます" or text == "できます" or text == "いってきまーす"
       code = codes.light_off
       message = ""
       exec CODE_PREFIX + code, (err, stdout, stderr) ->
@@ -105,7 +105,7 @@ module.exports = (robot) ->
         envelope = room: config.roomId
         robot.send envelope, message
 
-    else if text == "電気暗め" or text == "人気暗め" or text == "電気久留米"
+    else if text == "電気暗め" or text == "人気暗め" or text == "電気久留米" or text == "暗くして"
       code = codes.light_night
       message = ""
       exec CODE_PREFIX + code, (err, stdout, stderr) ->
